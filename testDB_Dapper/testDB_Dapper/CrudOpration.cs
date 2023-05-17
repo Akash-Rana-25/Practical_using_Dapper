@@ -46,18 +46,20 @@ namespace testDB_Dapper
             }
 
         }
-        public void Update(int UpdateId)
+        public void Update(int UpdateId,Employee employee)
         {
 
 
-            string updateSql =@"Update Employee set FirstName='Updated',MiddleName ='S',LastName ='Raj',EmpCode=1007,Gender=1,salary=202020,JoiningDate='2022-01-07',ResignDate='2024-2-2' Where Employee_PK=@Employee_PK;";
-            var parameter = new { Employee_PK = UpdateId };
+            string updateSql = @"Update Employee set FirstName=@FirstName,MiddleName =@MiddleName,LastName =@LastName,EmpCode=@EmpCode,Gender=@gender,salary=@salary,JoiningDate=@JoiningDate,ResignDate=@ResignDate Where Employee_PK=@Employee_PK;";
+            var parameters = new { Employee_PK = UpdateId,firstName = employee.FirstName, middleName = employee.MiddleName, lastName = employee.LastName, empCode = employee.EmpCode, gender = employee.Gender, dob = employee.DOB, Salary = employee.salary, joiningDate = employee.JoiningDate, resignDate = employee.ResignDate };
+
+            
 
             using (var connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    var affectedRows = connection.Execute(updateSql, parameter);
+                    var affectedRows = connection.Execute(updateSql, parameters);
                     if (affectedRows == 0)
                     {
                         Console.WriteLine("Somthing Went Wrong");

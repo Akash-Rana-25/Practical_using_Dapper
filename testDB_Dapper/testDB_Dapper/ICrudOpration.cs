@@ -9,7 +9,7 @@ namespace testDB_Dapper
     internal interface ICrudOpration
     {
         void Add(Employee employee);
-        void Update(int Id);
+        void Update(int Id,Employee employee);
         void Delete(int Id);
         void Read();
     }

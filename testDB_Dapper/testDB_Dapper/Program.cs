@@ -65,8 +65,22 @@ namespace testDB_Dapper
 
                         if (int.TryParse(Console.ReadLine(), out UpdateId))
                         {
+                            var UpdateEmployee = new Employee()
+                            {
+                                FirstName = "karan",
+                                MiddleName = "i",
+                                LastName = "Rana",
+                                EmpCode = 12,
+                                Gender = 1,
+                                DOB = DateTime.Now,
+                                salary = 54166,
+                                JoiningDate = DateTime.Now,
+                                ResignDate = DateTime.Now,
+
+                            };
+
                             CrudOpration update = new CrudOpration();
-                            update.Update(UpdateId);
+                            update.Update(UpdateId,UpdateEmployee);
                         }
                         else
                         {
